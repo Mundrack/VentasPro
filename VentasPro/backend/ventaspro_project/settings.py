@@ -3,6 +3,7 @@ Configuración de Django para VentasPro
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 from decouple import config, Csv
 
@@ -70,12 +71,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ventaspro_project.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Usar PostgreSQL en producción (Railway) o SQLite en desarrollo
+if config('DATABASE_URL', default=None):
+    # Configuración para Railway/producción con PostgreSQL
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    # Configuración para desarrollo con SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -167,3 +180,10 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+    
+    # Configurar el host del proxy de confianza
+    CSRF_TRUSTED_ORIGINS = config(
+        'CORS_ALLOWED_ORIGINS',
+        default='https://tu-dominio.railway.app',
+        cast=Csv()
+    )
