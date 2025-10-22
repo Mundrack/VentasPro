@@ -28,10 +28,11 @@ const SalesManagement = () => {
   const fetchVendedores = async () => {
     try {
       const response = await vendedoresAPI.getActivos();
-      setVendedores(response.data);
+      setVendedores(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
       console.error('Error al cargar vendedores:', err);
       setError('No se pudieron cargar los vendedores');
+      setVendedores([]);
     }
   };
 
@@ -40,11 +41,12 @@ const SalesManagement = () => {
     setLoading(true);
     try {
       const response = await ventasAPI.getAll();
-      setVentas(response.data);
+      setVentas(Array.isArray(response.data) ? response.data : []);
       setError(null);
     } catch (err) {
       console.error('Error al cargar ventas:', err);
       setError(handleAPIError(err));
+      setVentas([]);
     } finally {
       setLoading(false);
     }
