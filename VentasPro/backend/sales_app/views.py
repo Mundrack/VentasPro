@@ -231,8 +231,8 @@ class ComisionViewSet(viewsets.ViewSet):
                 numero_ventas=numero_ventas
             )
         
-        serializer = ResumenComisionSerializer(vendedores_data, many=True)
-        return Response(serializer.data)
+        # Devolver los datos directamente sin serializer
+        return Response(vendedores_data)
     
     @action(detail=False, methods=['get'])
     def resumen(self, request):
