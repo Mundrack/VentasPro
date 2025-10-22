@@ -1,0 +1,75 @@
+[
+  {
+    "model": "sales_app.vendedor",
+    "pk": 1,
+    "fields": {
+      "nombre": "Juan",
+      "apellido": "Pérez",
+      "email": "juan.perez@ventaspro.com",
+      "telefono": "+593 99 123 4567",
+      "activo": true
+    }
+  },
+  {
+    "model": "sales_app.vendedor",
+    "pk": 2,
+    "fields": {
+      "nombre": "María",
+      "apellido": "García",
+      "email": "maria.garcia@ventaspro.com",
+      "telefono": "+593 99 765 4321",
+      "activo": true
+    }
+  },
+  {
+    "model": "sales_app.vendedor",
+    "pk": 3,
+    "fields": {
+      "nombre": "Carlos",
+      "apellido": "Rodríguez",
+      "email": "carlos.rodriguez@ventaspro.com",
+      "telefono": "+593 98 234 5678",
+      "activo": true
+    }
+  },
+  {
+    "model": "sales_app.reglacomision",
+    "pk": 1,
+    "fields": {
+      "nombre": "Comisión Básica",
+      "monto_minimo": "0.00",
+      "porcentaje": "3.00",
+      "activa": true
+    }
+  },
+  {
+    "model": "sales_app.reglacomision",
+    "pk": 2,
+    "fields": {
+      "nombre": "Comisión Intermedia",
+      "monto_minimo": "500.00",
+      "porcentaje": "5.00",
+      "activa": true
+    }
+  },
+  {
+    "model": "sales_app.reglacomision",
+    "pk": 3,
+    "fields": {
+      "nombre": "Comisión Premium",
+      "monto_minimo": "1000.00",
+      "porcentaje": "7.50",
+      "activa": true
+    }
+  },
+  {
+    "model": "sales_app.reglacomision",
+    "pk": 4,
+    "fields": {
+      "nombre": "Comisión VIP",
+      "monto_minimo": "2000.00",
+      "porcentaje": "10.00",
+      "activa": true
+    }
+  }
+]
